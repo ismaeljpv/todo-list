@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %} Registro {% endblock %}</h1>
+{% endblock %}
+
+{% block content %} 
+    <form method="post">
+        <div class="form-input">
+            <label for="username">Nombre de usuario</label>
+            <input class="text" type="text" name="username" id="username" placeholder="Ingrese su usuario" required />
+        </div>
+        <div class="form-input">
+            <label for="password">Contraseña</label>
+            <input class="text" type="password" name="password" id="password" placeholder="Ingrese su contraseña" required />
+        </div>
+        <div class="form-input">
+            <input  class="submit" type="submit" value="Registrarse">
+        </div>
+    </form>
+{% endblock %}

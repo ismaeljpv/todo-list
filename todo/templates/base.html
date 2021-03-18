@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>{% block title %} {% endblock %} - Task List</title>
+</head>
+<body>
+    <nav>
+        <ul class="nav">
+            <li><a href=" {{ url_for('todo.index') }} ">Task List</a></li>
+            {% if g.user %}
+                <li class="title"> {{ g.user['username'] }} </li>
+                <li> <a href=" {{ url_for('auth.logout') }} ">Cerrar Sesión</a> </li>
+            {% else %}
+                <li> <a href=" {{ url_for('auth.register') }} ">Registrarse</a> </li>
+                <li> <a href=" {{ url_for('auth.login') }} ">Iniciar Sesión</a> </li>
+            {% endif %}
+        </ul>
+    </nav>
+    <div class="header" >
+        {% for message in get_flashed_messages() %}
+            <div class = "flash">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div style="text-align: center;">
+                {% block header %} {% endblock %}
+        </div>
+    </div>
+    <div class="content">
+        {% block content %} {% endblock %}
+    </div>
+</body>
+</html>

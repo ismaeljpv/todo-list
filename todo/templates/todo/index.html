@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %} Lista de Tareas {% endblock %}</h1>
+    {% if g.user %}
+        <div class="create-btn">
+            <a class="action" href="{{ url_for('todo.create') }}">Crear</a>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <ul class="todo">
+        {% for todo in todos %}
+            <li>
+                <div>
+                    <h1>
+                        {% if todo['completed'] == 1 %}
+                            <del>{{ todo['description'] }}</del>
+                        {% else %}
+                            {{ todo['description'] }}
+                        {% endif %}
+                    </h1>
+                    <div class="about">    
+                            <div style="margin-right: 15px;">{{ todo['created_at'].strftime('%Y-%m-%d') }}</div>
+                            <div style="margin-left: 15px; margin-bottom: 10px;">
+                                <a  class="edit" href="{{ url_for('todo.update',id=todo['id']) }}" >Editar</a>
+                            </div>
+                    </div>
+                </div>
+            </li>
+            {% if not loop.last %}    
+                <hr />
+            {% endif %}    
+        {% endfor %}
+    </ul>
+{% endblock %}

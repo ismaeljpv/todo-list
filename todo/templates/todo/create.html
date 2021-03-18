@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %} Crear Tarea {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="post" style="margin-top: 20px;">
+        <div class="form-input">
+            <label for="description">Descripción</label>
+            <input class="text" type="text" name="description" id="description" placeholder="Ingrese la descripción" required/>
+        </div>
+       <div class="form-input">
+            <input class="submit" type="submit" value="Guardar">
+       </div>
+    </form>
+{% endblock %}
